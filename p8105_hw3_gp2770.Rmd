@@ -19,7 +19,7 @@ library(p8105.datasets)
 
 ```
 
-Reading in the data
+## Reading in the data
 
 ```{r}
 data("ny_noaa")
