@@ -25,7 +25,7 @@ library(p8105.datasets)
 data("ny_noaa")
 ```
 
-Answering questions about the data
+## Answering questions about the data
 
 This dataset contains `r nrow(ny_noaa)` rows and `r ncol(ny_noaa)` columns. Variables include weather station id, date of observation,  (tenths of mm), snowfall (mm), snow depth (mm), and min and max temperature (tenths of degrees C).
 
@@ -79,7 +79,7 @@ hex + ridge
 
 # Problem 2
 
-Loading and cleaning the accelerometer data.
+## Loading and cleaning the accelerometer data.
 
 ```{r}
 
@@ -88,7 +88,9 @@ accel_df <- read_csv("data/nhanes_accel.csv") %>%
 
 ```
 
-Loading, cleaning and tidying the demographic data. Data is encoded with reasonable variable classes.
+## Loading, cleaning and tidying the demographic data. 
+
+Data is encoded with reasonable variable classes.
 
 ```{r}
 
@@ -108,7 +110,7 @@ demographic_df <- read_csv("data/nhanes_covar.csv", skip = 4) %>%
 
 ```
 
-Merging the two datasets and excluding participants less than 21 years of age and those with missing demographic data.
+## Merging the two datasets and excluding participants less than 21 years of age and those with missing demographic data.
 
 ```{r}
 
@@ -118,7 +120,7 @@ nhanes_df <- left_join(demographic_df, accel_df, by = "seqn") %>%
 
 ```
 
-A reader-friendly table for the number of men and women in each education category.
+## A reader-friendly table for the number of men and women in each education category.
 
 ```{r}
 
@@ -140,7 +142,7 @@ nhanes_df %>%
 
 The table highlights the distribution of men and women across different education categories. In the "Less than High School" category, there is near parity, with 27 men and 28 women, indicating similar levels of educational attainment at this level. However, for the "High School Equivalent" category, men (34) slightly outnumber women (23), suggesting that more men have achieved this level of education. In contrast, in the "More than High School" category, women (59) surpass men (54).
 
-Visualization of the age distributions for men and women in each education category.
+## Visualization of the age distributions for men and women in each education category.
 
 ```{r}
 
@@ -159,7 +161,7 @@ ggplot(nhanes_df, aes(x = age, fill = sex)) +
 
 Overall, the graph indicates that older participants tend to have less than a high school education, while younger and middle-aged individuals are more evenly distributed across the higher education categories. Women are more prevalent in the "More than high school" category, which aligns with the trend observed in the earlier table where more women than men had higher educational attainment.
 
-Creating a total activity variable for each participant.
+## Creating a total activity variable for each participant.
 
 ```{r}
 
@@ -169,7 +171,7 @@ total_activity_df <- nhanes_df %>%
 
 ```
 
-Plotting total activities against age; comparing men to women and having separate panels for each education level.
+## Plotting total activities against age; comparing men to women and having separate panels for each education level.
 
 ```{r}
 
@@ -189,7 +191,7 @@ ggplot(total_activity_df, aes(x = age, y = total_activity, color = sex)) +
 
 The plot shows total daily activity (measured in MIMS) versus age, split by education level and gender. Across all education categories, there is a general decline in activity with age, but the patterns vary by gender and education. Men and women with "Less than high school" education display a steep decline in activity around middle age, particularly for men. In the "High school equivalent" category, the total activity fluctuates more, especially for females, who exhibit a peak around middle age. In the "More than high school" group, both men and women show a more gradual decline in activity.
 
-A three-panel plot showing 24-hour activity time courses for each education level.
+## A three-panel plot showing 24-hour activity time courses for each education level.
 
 ```{r}
 
@@ -215,7 +217,7 @@ The 24-hour activity time courses by education level and sex reveal clear patter
 
 # Problem 3
 
-Importing, cleaning, and tidying the given datasets.
+## Importing, cleaning, and tidying the given datasets.
 
 ```{r}
 
@@ -253,7 +255,7 @@ july_2024_df =
 
 ```
 
-Combining the four datasets.
+## Combining the four datasets.
 
 ```{r}
 
@@ -264,7 +266,7 @@ citi_df =
 
 The resulting dataset combines the 1% of all rides with a total duration less than 4 hours in each of the following four months: January 2020, January 2024, July 2020 and July 2024. There are 9 variables and 99485 observations in the final dataset. The variables include ride ids, the type of ride, specific day of the week when it was rented, the duration of the ride in minutes, the start and the end station, classification of the rider (member/casual) and the month and year. 
 
-A reader-friendly table showing the total number of rides in each combination of year and month separating casual riders and Citi Bike members. 
+## A reader-friendly table showing the total number of rides in each combination of year and month separating casual riders and Citi Bike members. 
 
 ```{r}
 
@@ -283,7 +285,7 @@ citi_df %>%
 The number of rides, for both casual riders and members, increased from 2020 to 2024.
 In both years, July had considerably more rides compared to January, reflecting seasonal variation in ride frequency (e.g., more rides in summer months). Citi Bike members consistently logged more rides than casual riders in all periods.
 
-A table showing the 5 most popular starting stations for July 2024; including the number of rides originating from these stations.
+## A table showing the 5 most popular starting stations for July 2024; including the number of rides originating from these stations.
 
 ```{r}
 
@@ -296,7 +298,7 @@ popular_stations <- citi_df %>%
 
 ```
 
-A plot to investigate the effects of day of the week, month, and year on median ride duration.
+## A plot to investigate the effects of day of the week, month, and year on median ride duration.
 
 ```{r}
 
@@ -322,7 +324,7 @@ ggplot(ride_duration_summary, aes(x = weekdays, y = median_duration, color = mon
 
 The plot reveals significant trends in bike rental usage across different days of the week, months, and years. Typically, median ride durations are longer on weekends, indicating that casual riders likely use bikes for recreational purposes, while weekday rides may reflect shorter commutes. The separation of data by year allows for a comparative analysis, highlighting shifts in user behavior, such as increased ride durations in 2024 compared to 2020, which could indicate a growing popularity of bike-sharing. The color coding for months aids in identifying consistent patterns, prompting further exploration into factors influencing these trends.
 
-Impact of month, membership status, and bike type on the distribution of ride duration (2024 Data)
+## Impact of month, membership status, and bike type on the distribution of ride duration (2024 Data)
 
 ```{r}
 
