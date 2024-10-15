@@ -293,8 +293,10 @@ popular_stations <- citi_df %>%
   filter(month == "July", year == 2024) %>%  
   group_by(start_station_name) %>%              
   summarize(total_rides = n()) %>%          
-  arrange(desc(total_rides)) %>% 
-  head(5)
+  arrange(desc(total_rides)) %>%  
+  head(5) 
+
+knitr::kable(popular_stations)
 
 ```
 
